@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['ash@ashfurrow.com', 'dbgrandi@gmail.com', 'orta.therox@gmail.com']
   spec.description   = %q{A Danger plugin for linting Swift with SwiftLint.}
   spec.summary       = %q{A Danger plugin for linting Swift with SwiftLint.}
-  spec.homepage      = 'https://github.com/ashfurrow/danger-swiftlint'
+  spec.homepage      = 'https://github.com/davidahouse/danger-swiftlint'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split($/)
@@ -29,12 +29,12 @@ Gem::Specification.new do |spec|
   # Makes testing easy via `bundle exec guard`
   spec.add_development_dependency "guard", '~> 2.14'
   spec.add_development_dependency "guard-rspec", '~> 4.7'
-  
+
   # If you want to work on older builds of ruby
   spec.add_development_dependency "listen", '3.0.7'
 
   # This gives you the chance to run a REPL inside your test
-  # via 
+  # via
   #    binding.pry
   # This will stop test execution and let you inspect the results
   spec.add_development_dependency "pry"
