@@ -30,6 +30,9 @@ module Danger
     # @return  [void]
     #
     def lint_files(files=nil)
+
+      puts "lint_files running from davidahouse fork"
+
       # Installs SwiftLint if needed
       system "brew install swiftlint" unless swiftlint_installed?
 
@@ -97,7 +100,7 @@ module Danger
         message << parse_results(warnings, 'Warnings') unless warnings.empty?
         message << parse_results(errors, 'Errors') unless errors.empty?
 
-        markdown message unless message.empty?
+#        markdown message unless message.empty?
       end
     end
 
@@ -117,12 +120,13 @@ module Danger
         line = r['line']
         reason = r['reason']
 
-        message << "#{filename} | #{line} | #{reason} \n"
+        message = "#{filename} | #{line} | #{reason}"
+        puts(message)
 
         if heading == 'Warnings'
-          warn("#{filename} | #{line} | #{reason}")
+          warn(message)
         else
-          fail("#{filename} | #{line} | #{reason}")
+          fail(message)
         end
       end
 
