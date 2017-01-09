@@ -103,11 +103,11 @@ module Danger
         end
 
         message << parse_results(warnings, 'Warnings') unless warnings.empty?
-        warn("#{warnings.count} SwiftLint warnings") unless warnings.empty?
+#        warn("#{warnings.count} SwiftLint warnings") unless warnings.empty?
         message << parse_results(errors, 'Errors') unless errors.empty?
-        fail("#{errors.count} SwiftLint errors") unless errors.empty?
+#        fail("#{errors.count} SwiftLint errors") unless errors.empty?
 
-        markdown message unless message.empty?
+#        markdown message unless message.empty?
       end
     end
 
@@ -128,6 +128,12 @@ module Danger
         reason = r['reason']
 
         message << "#{filename} | #{line} | #{reason} \n"
+
+        if heading == "Warning"
+          warn("SwiftLint: #{filename} [#{line}] #{reason}")
+        else
+          fail("SwiftLint: #{filename} [#{line}] #{reason}")
+        end
       end
 
       message
