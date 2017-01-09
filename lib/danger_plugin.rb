@@ -40,8 +40,6 @@ module Danger
         return
       end
 
-      puts(`("swiftlint version")`)
-
       require 'tempfile'
       Tempfile.open('.swiftlint_danger.yml') do |temp_config_file|
         on_the_fly_configuration_path = nil
@@ -57,7 +55,7 @@ module Danger
           on_the_fly_configuration_path = temp_config_file.path
         end
 
-        swiftlint_command = "swiftlint lint --quiet --reporter json"
+        swiftlint_command = "swiftlint lint --reporter json"
         swiftlint_command += " --config #{on_the_fly_configuration_path}" if on_the_fly_configuration_path
 
         require 'json'
@@ -73,6 +71,9 @@ module Danger
 
           # Make sure we don't fail when paths have spaces
           swift_files = swift_files.map { |file| "\"#{file}\"" }
+
+          puts("swift files:")
+          puts(swift_files)
 
           result_json = swift_files
           .uniq
