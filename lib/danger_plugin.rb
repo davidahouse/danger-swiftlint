@@ -90,15 +90,17 @@ module Danger
 
         message = ''
 
+        puts("getting the results together")
+
         # We got some error reports back from swiftlint
         if warnings.count > 0 || errors.count > 0
           message = "### SwiftLint found issues\n\n"
         end
 
         message << parse_results(warnings, 'Warnings') unless warnings.empty?
-        warn("{warnings.count} SwiftLint warnings") unless warnings.empty?
+        warn("#{warnings.count} SwiftLint warnings") unless warnings.empty?
         message << parse_results(errors, 'Errors') unless errors.empty?
-        fail("{errors.count} SwiftLint errors") unless errors.empty?
+        fail("#{errors.count} SwiftLint errors") unless errors.empty?
 
         markdown message unless message.empty?
       end
@@ -120,7 +122,7 @@ module Danger
         line = r['line']
         reason = r['reason']
 
-        message << "#{filename} | #{line} | #{reason}"
+        message << "#{filename} | #{line} | #{reason} \n"
       end
 
       message
