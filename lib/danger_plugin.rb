@@ -40,6 +40,8 @@ module Danger
         return
       end
 
+      puts(`("swiftlint version")`)
+
       require 'tempfile'
       Tempfile.open('.swiftlint_danger.yml') do |temp_config_file|
         on_the_fly_configuration_path = nil
@@ -79,6 +81,8 @@ module Danger
           .map { |s| JSON.parse(s).flatten }
           .flatten
         end
+
+        puts(result_json)
 
         # Convert to swiftlint results
         warnings = result_json.select do |results|
