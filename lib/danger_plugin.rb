@@ -129,7 +129,7 @@ module Danger
 
         message << "#{filename} | #{line} | #{reason} \n"
 
-        if heading.eq? "Warning"
+        if heading.eql? "Warning"
           warn("SwiftLint: #{filename} [#{line}] #{reason}")
         else
           fail("SwiftLint: #{filename} [#{line}] #{reason}")
